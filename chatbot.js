@@ -65,16 +65,24 @@
     btn.addEventListener('click', function () { burbuja(b[0], 'usuario'); responder(b[1]); });
     quick.appendChild(btn);
   });
-  function abrir(v) {
+  function abrir(v, auto) {
     panel.hidden = !v; toggle.setAttribute('aria-expanded', String(v));
     toggle.setAttribute('aria-label', v ? 'Cerrar el asistente de RY Jewelry' : 'Abrir el asistente de RY Jewelry');
     root.classList.toggle('abierto', v);
-    if (v && !iniciado) { iniciado = true; burbuja(R.saludo, 'bot'); burbuja('Cuéntame, ¿qué te gustaría saber? Puedes tocar una opción o escribirme con toda confianza.', 'bot'); }
-    if (v) input.focus(); else toggle.focus();
+    if (v && !iniciado) { iniciado = true; burbuja(R.saludo, 'bot'); burbuja('En RY Jewelry te ofrecemos joyería de <strong>oro 10K</strong> con calidad garantizada y envíos a todo EE. UU. El oro 10K es resistente, aguanta el uso diario y mantiene su brillo, por eso es ideal para lucirlo todos los días. Tú eliges tu pieza y te atendemos personalmente por WhatsApp.', 'bot'); burbuja('Cuéntame, ¿qué te gustaría saber? Puedes tocar una opción o escribirme con toda confianza.', 'bot'); }
+    if (!auto) { if (v) input.focus(); else toggle.focus(); }
   }
   toggle.addEventListener('click', function () { abrir(panel.hidden); });
   root.querySelector('.rybot-close').addEventListener('click', function () { abrir(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) abrir(false); });
+  // Bienvenida automática: se abre sola al entrar (una vez por sesión), sin bloquear la página.
+  var visto = false; try { visto = sessionStorage.getItem('rybot-visto') === '1'; } catch (e) {}
+  if (!visto) {
+    setTimeout(function () {
+      if (panel.hidden) abrir(true, true);
+      try { sessionStorage.setItem('rybot-visto', '1'); } catch (e) {}
+    }, 1200);
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var t = input.value.trim(); if (!t) return;
