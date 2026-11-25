@@ -153,10 +153,27 @@ details a{color:var(--gold-deep)}
 .final{background:linear-gradient(180deg,var(--ivory),var(--cream));text-align:center}
 .final .wrap{background:#fff;border:1px solid var(--line);border-radius:28px;padding:3rem 1.4rem;max-width:760px;box-shadow:0 10px 34px rgba(138,106,34,.08)}
 
+/* Newsletter opcional */
+.news{padding:0 0 4.5rem;text-align:center;scroll-margin-top:78px}
+.news .card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:2.6rem 1.4rem 2.2rem;max-width:760px;margin:0 auto;box-shadow:0 10px 34px rgba(138,106,34,.08)}
+.news h2{font-size:clamp(2rem,5vw,2.8rem)}
+.news .lead{color:var(--muted);max-width:36rem;margin:.85rem auto 0}
+.news form{display:flex;flex-direction:column;align-items:stretch;gap:.7rem;margin:1.5rem auto 0;width:min(100%,520px)}
+@media(min-width:680px){.news form{flex-direction:row;align-items:center}}
+.news input{flex:1;min-width:0;width:100%;min-height:52px;border-radius:var(--r);border:1px solid var(--line);background:var(--ivory);color:var(--text);padding:0 1.15rem;font:inherit;font-size:16px}
+.news .btn{border:0;cursor:pointer;letter-spacing:.04em;text-transform:none;font-size:1rem}
+@media(max-width:679px){.news .btn{width:100%}}
+.news .fine{margin:.9rem 0 0;font-size:.8rem;color:var(--muted)}
+.news .msg{margin:.75rem auto 0;min-height:1.5em;max-width:36rem;font-size:.98rem}
+.news .msg[data-state="error"]{color:#8A3A22}
+.news .msg[data-state="ok"]{color:var(--ink)}
+.news .msg a{color:var(--gold-deep);font-weight:500}
+
 /* Footer */
 footer{background:var(--ink);color:#A89D8A;padding:3.2rem 0 6.5rem;font-size:.9rem}
 footer .wrap{display:grid;gap:2rem}
-@media(min-width:760px){footer .wrap{grid-template-columns:2fr 1fr 1fr}}
+@media(min-width:760px){footer .wrap{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){footer .wrap{grid-template-columns:1.5fr 1fr 1fr 1.25fr}}
 footer h4{font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-2);margin:0 0 .9rem;font-weight:500}
 footer ul{list-style:none;padding:0;margin:0}
 footer li{margin:.45rem 0}
@@ -305,10 +322,10 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(201,162,74,.18);padding-
       <div class="faq">
         <details><summary>¿De qué material son las joyas?</summary><p>Nuestra joyería es de oro 10K. Si quieres detalles de una pieza en particular, <a href="https://wa.me/message/3DJVH3QBPEJBI1" target="_blank" rel="noopener">consúltanos por WhatsApp</a>.</p></details>
         <details><summary>¿Cómo hago un pedido?</summary><p>Escríbenos por WhatsApp con la pieza que te gustó y te acompañamos paso a paso, sin prisas.</p></details>
-        <details><summary>¿Hacen envíos a mi estado?</summary><p>Sí, hacemos envíos a todo EE. UU. Para tiempos y costos de envío, consúltanos por WhatsApp.</p></details>
+        <details><summary>¿Hacen envíos a mi estado?</summary><p>Sí, hacemos envíos a todo EE. UU. Para tiempos y costos de envío, consúltanos por WhatsApp o lee la <a href="envios.html">política de envíos</a>.</p></details>
         <details><summary>¿Cuáles son los precios?</summary><p>Los precios varían según la pieza. Consúltanos por WhatsApp y te compartimos los precios actualizados.</p></details>
         <details><summary>¿Qué formas de pago aceptan?</summary><p>Consúltanos por WhatsApp y te indicamos las opciones de pago disponibles.</p></details>
-        <details><summary>¿Tienen cambios o devoluciones?</summary><p>Consúltanos por WhatsApp para conocer nuestras políticas antes de tu compra.</p></details>
+        <details><summary>¿Tienen cambios o devoluciones?</summary><p>Consúltanos por WhatsApp para conocer nuestras políticas antes de tu compra, y lee <a href="devoluciones.html">devoluciones y cambios</a>.</p></details>
         <details><summary>¿Cómo cuido mis joyas de oro?</summary><p>Como recomendación general, guarda cada pieza por separado, evita el contacto con perfumes y químicos fuertes, y límpiala con un paño suave y seco.</p></details>
       </div>
     </div>
@@ -322,6 +339,69 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(201,162,74,.18);padding-
       <div class="rule" style="margin-left:auto;margin-right:auto"></div>
       <a class="btn btn-gold" href="https://wa.me/message/3DJVH3QBPEJBI1" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir por WhatsApp</a>
     </div>
+  </section>
+
+  <section class="news" id="newsletter" aria-labelledby="news-title">
+    <div class="wrap">
+      <div class="card">
+        <h2 id="news-title">Únete a la familia RY&nbsp;💛</h2>
+        <p class="lead">Déjanos tu correo y te avisamos primero de nuevas piezas y promociones especiales. Sin spam, prometido.</p>
+        <form id="boletin" novalidate>
+          <label class="sr" for="correo">Tu correo</label>
+          <input id="correo" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tu@correo.com" maxlength="200" aria-describedby="boletin-nota boletin-msg">
+          <button class="btn btn-gold" type="submit">Quiero enterarme</button>
+        </form>
+        <p class="fine" id="boletin-nota">Es opcional; puedes darte de baja cuando quieras.</p>
+        <p class="msg" id="boletin-msg" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <!-- PROVISIONAL: conectar proveedor de newsletter -->
+    <script>
+    (function () {
+      var WA = 'https://wa.me/message/3DJVH3QBPEJBI1';
+      var form = document.getElementById('boletin');
+      var input = document.getElementById('correo');
+      var msg = document.getElementById('boletin-msg');
+
+      function correoValido(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+      }
+
+      // Sustituye esta función por Mailchimp, Brevo o Formspree.
+      // Hoy no envía el correo a ningún servicio.
+      function suscribirNewsletter(email) {
+        window.open(WA, '_blank', 'noopener');
+        return Promise.resolve({ ok: true, via: 'whatsapp', email: email });
+      }
+
+      function mensajeGracias() {
+        msg.dataset.state = 'ok';
+        msg.textContent = '';
+        msg.append('¡Gracias! Envíanos el mensaje por ');
+        var link = document.createElement('a');
+        link.href = WA;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'WhatsApp';
+        msg.append(link);
+        msg.append(' para confirmar tu suscripción 💛');
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var email = input.value.trim();
+        if (!correoValido(email)) {
+          msg.dataset.state = 'error';
+          msg.textContent = 'Revisa tu correo: parece que le falta algo.';
+          input.setAttribute('aria-invalid', 'true');
+          input.focus();
+          return;
+        }
+        input.removeAttribute('aria-invalid');
+        suscribirNewsletter(email).then(mensajeGracias);
+      });
+    })();
+    </script>
   </section>
 </main>
 
@@ -338,6 +418,15 @@ footer .copy{grid-column:1/-1;border-top:1px solid rgba(201,162,74,.18);padding-
     <div>
       <h4>Contacto</h4>
       <ul><li><a href="https://wa.me/message/3DJVH3QBPEJBI1" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://www.tiktok.com/@yilyalishali" target="_blank" rel="noopener">TikTok @yilyalishali</a></li></ul>
+    </div>
+    <div>
+      <h4>Políticas</h4>
+      <ul>
+        <li><a href="envios.html">Política de envíos</a></li>
+        <li><a href="devoluciones.html">Devoluciones y cambios</a></li>
+        <li><a href="privacidad.html">Política de privacidad</a></li>
+        <li><a href="terminos.html">Términos del servicio</a></li>
+      </ul>
     </div>
     <p class="copy">© <span id="y">2026</span> RY Jewelry. Todos los derechos reservados.</p>
   </div>
